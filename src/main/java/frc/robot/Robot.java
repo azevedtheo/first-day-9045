@@ -78,14 +78,14 @@ public class Robot extends TimedRobot {
     double speed = MathUtil.clamp(-controller.getRawAxis(1), maxSpeed * -1, maxSpeed);
     double turn = MathUtil.clamp(controller.getRawAxis(4), maxSpeed * -1, maxSpeed);
 
-    double left = speed + turn;
-    double right = speed - turn; 
+    double leftSpeed = speed + turn;
+    double rightSpeed = speed - turn; 
     
 
-    frontLeftMotor.set(left);
-    frontRightMotor.set(left);
-    backLeftMotor.set(-right);
-    backRightMotor.set(-right);
+    frontLeftMotor.set(leftSpeed);
+    frontRightMotor.set(leftSpeed);
+    backLeftMotor.set(-rightSpeed);
+    backRightMotor.set(-rightSpeed);
   }
 
   public void stop() {
