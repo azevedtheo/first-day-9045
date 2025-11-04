@@ -7,17 +7,17 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.OIConsts;
-import frc.robot.subsys.IntakeSubsystem;
+import frc.robot.subsys.ShooterSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class IntakeCommand extends Command {
-  private final IntakeSubsystem intakeSub;
+public class ShooterCommand extends Command {
+  private final ShooterSubsystem shooterSub;
   private final Joystick controller;
   
-  public IntakeCommand(IntakeSubsystem subsystem, Joystick joystick) {
-    this.intakeSub = subsystem;
+  public ShooterCommand(ShooterSubsystem subsystem, Joystick joystick) {
+    this.shooterSub = subsystem;
     this.controller = joystick;
-    addRequirements(intakeSub);
+    addRequirements(shooterSub);
   }
 
   // Called when the command is initially scheduled.
@@ -27,18 +27,24 @@ public class IntakeCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    boolean takeIn = controller.getRawButton(OIConsts.LEFT_BUMPER_L1); // Button A for intake
-    boolean takeOut = controller.getRawButton(OIConsts.RIGHT_BUMPER_R1); // Button B for outtake
+    boolean shootShooterButton =
+            controller.getRawButton(
+                                    OIConsts.RIGHT_BUMPER_R1
+                                    );
+    boolean retractShooterButton =
+            controller.getRawButton(
+                                    OIConsts.LEFT_BUMPER_L1
+            );
     
-    if ((takeIn && takeOut) || (!takeIn && !takeOut)) intakeSub.stopIntake();
-    if (takeIn && !takeOut) intakeSub.outtake();
-    if (!takeIn && takeOut) intakeSub.intake();
+    if (shootShooterButton) shooterSub.shootShooter();
+    if (retractShooterButton) shooterSub.retractShooter();
+    if (!shootShooterButton && !retractShooterButton) shooterSub.stopShooter();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeSub.stopIntake();
+    shooterSub.stopShooter();
   }
 
   // Returns true when the command should end.

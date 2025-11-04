@@ -6,13 +6,13 @@ public class Constants {
         public static final int FRONT_RIGHT_MOTOR_ID = 2;
         public static final int BACK_LEFT_MOTOR_ID = 3;
         public static final int BACK_RIGHT_MOTOR_ID = 4;
-        public static final double MAX_SPEED = 0.5; // Max speed as a fraction of full speed
+        public static final double MAX_SPEED = 0.35; // Max speed as a fraction of full speed
 
     }
-    public static class IntakeConsts {
-        public static final int LEFT_INTAKE_MOTOR_ID = 7;
-        public static final int RIGHT_INTAKE_MOTOR_ID = 11;
-        public static final double INTAKE_SPEED = 0.5;
+    public static class ShooterConsts {
+        public static final int LEFT_SHOOTER_MOTORCONTROLLER_ID = 7;
+        public static final int RIGHT_SHOOTER_MOTORCONTROLLER_ID = 11;
+        public static final double SHOOTER_SPEED = 0.4;
 
     }
     public static class OIConsts {
@@ -37,6 +37,7 @@ public class Constants {
     public static class ElevatorConsts {
         public static final int ELEVATOR_LEFT_MOTOR_ID = 6;
         public static final int ELEVATOR_RIGHT_MOTOR_ID = 5;
-        public static final double ELEVATOR_SPEED = 0.32;
+        public static final double ELEVATOR_SPEED = 0.35;
+        public static final double HOLD_ELEVATOR_SPEED = -0.02;
     }
 }

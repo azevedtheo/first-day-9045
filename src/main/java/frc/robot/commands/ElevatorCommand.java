@@ -28,16 +28,20 @@ public class ElevatorCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double elevatorMoveUP = controller.getRawAxis(OIConsts.RIGHT_TRIGGER_R2); // Invert Y axis for up
-    double elevatorMoveDOWN = controller.getRawAxis(OIConsts.LEFT_TRIGGER_L2);
+    
+    double    elevatorMoveUP  =
+              controller.getRawAxis(
+                                    OIConsts.RIGHT_TRIGGER_R2
+                                    ); // Invert Y axis for up
 
-    if (elevatorMoveUP > 0.3) {
-      elevator.upElevator();
-    } else if (elevatorMoveDOWN > 0.3) {
-      elevator.downElevator();
-    } else if (elevatorMoveUP < 0.29 && elevatorMoveDOWN < 0.29) {
-      elevator.holdElevator();
-    }
+    double    elevatorMoveDOWN =
+              controller.getRawAxis(
+                                    OIConsts.LEFT_TRIGGER_L2
+                                   );
+
+    if (elevatorMoveUP > 0.3) elevator.upElevator();
+    if (elevatorMoveDOWN > 0.3) elevator.downElevator();
+    if (elevatorMoveUP < 0.29 && elevatorMoveDOWN < 0.29) elevator.holdElevator();
   }
 
   // Called once the command ends or is interrupted.

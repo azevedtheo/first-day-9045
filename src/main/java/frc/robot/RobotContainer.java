@@ -9,30 +9,56 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Constants.OIConsts;
 import frc.robot.commands.ElevatorCommand;
-import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.subsys.ElevatorSubsystem;
-import frc.robot.subsys.IntakeSubsystem;
+import frc.robot.subsys.ShooterSubsystem;
 
 
-public class RobotContainer {
-  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-  private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+public class RobotContainer 
+{
+  private final ElevatorSubsystem elevatorSubsystem =
+          new ElevatorSubsystem();
+  private final ShooterSubsystem intakeSubsystem =
+          new ShooterSubsystem();
 
-  private final Joystick mainController = new Joystick(OIConsts.MAIN_CONTROLLER_PORT);
+  private final Joystick mainController =
+          new Joystick(
+                        OIConsts.MAIN_CONTROLLER_PORT
+                      );
+ 
+  private final ShooterCommand IntakeCommand =
+          new ShooterCommand(
+                            intakeSubsystem,
+                            mainController
+                            );
 
-  private final IntakeCommand intakeCommand = new IntakeCommand(intakeSubsystem, mainController);  
-  private final ElevatorCommand elevatorCommand = new ElevatorCommand(elevatorSubsystem, mainController);
+  private final ElevatorCommand elevatorCommand =
+          new ElevatorCommand(
+                              elevatorSubsystem,
+                              mainController
+                            );
 
-  public RobotContainer() {
+  public RobotContainer() 
+  {
     configureBindings();
   }
 
-  private void configureBindings() {
-    intakeSubsystem.setDefaultCommand(intakeCommand);
-    elevatorSubsystem.setDefaultCommand(elevatorCommand);
+  private void configureBindings() 
+  {
+    intakeSubsystem.setDefaultCommand(
+                                      IntakeCommand
+                                      );
+
+    elevatorSubsystem.setDefaultCommand(
+                                        elevatorCommand
+                                        );
   }
 
-  public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+  public Command getAutonomousCommand() 
+  {
+    return Commands
+                  .print(
+                    "No autonomous command configured"
+                        );
   }
 }
