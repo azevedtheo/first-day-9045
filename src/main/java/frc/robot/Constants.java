@@ -9,12 +9,6 @@ public class Constants {
         public static final double  MAX_SPEED = 0.35; // Max speed as a fraction of full speed
 
     }
-    public static class ShooterConsts {
-        public static final int     LEFT_SHOOTER_MOTORCONTROLLER_ID = 7;
-        public static final int     RIGHT_SHOOTER_MOTORCONTROLLER_ID = 11;
-        public static final double  SHOOTER_SPEED = 0.4;
-
-    }
     public static class OIConsts {
         // Controller Ports
         public static final int     SUB_CONTROLLER_PORT = 1;
@@ -33,11 +27,5 @@ public class Constants {
         //Controller Buttons
         public static final int     A_BUTTON = 1;
         public static final int     B_BUTTON = 2;
-    }
-    public static class ElevatorConsts {
-        public static final int     ELEVATOR_LEFT_MOTOR_ID = 6;
-        public static final int     ELEVATOR_RIGHT_MOTOR_ID = 5;
-        public static final double  ELEVATOR_SPEED = 0.35;
-        public static final double  HOLD_ELEVATOR_SPEED = -0.02;
     }
 }

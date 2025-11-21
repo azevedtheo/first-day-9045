@@ -8,36 +8,28 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Constants.OIConsts;
-import frc.robot.commands.ElevatorCommand;
-import frc.robot.commands.ShooterCommand;
-import frc.robot.subsys.ElevatorSubsystem;
-import frc.robot.subsys.ShooterSubsystem;
+import frc.robot.commands.elevator.ElevatorCommand;
+import frc.robot.commands.shooter.ShooterCommand;
+import frc.robot.subsys.elevator.ElevatorSubsystem;
+import frc.robot.subsys.shooter.ShooterSubsystem;
 
 
 public class RobotContainer 
 {
-  private final ElevatorSubsystem elevatorSubsystem =
-          new ElevatorSubsystem();
-  private final ShooterSubsystem intakeSubsystem =
-          new ShooterSubsystem();
+  private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  private final ShooterSubsystem intakeSubsystem    = new ShooterSubsystem();
 
-  private final Joystick mainController =
-          new Joystick(
-                        OIConsts.MAIN_CONTROLLER_PORT
-                      );
+  private final Joystick        mainController  = new Joystick(
+                                                                OIConsts.MAIN_CONTROLLER_PORT
+                                                              );
  
-  private final ShooterCommand IntakeCommand =
-          new ShooterCommand(
-                            intakeSubsystem,
-                            mainController
-                            );
+  private final ShooterCommand  IntakeCommand   = new ShooterCommand(
+                                                                      intakeSubsystem, mainController
+                                                                    );
 
-  private final ElevatorCommand elevatorCommand =
-          new ElevatorCommand(
-                              elevatorSubsystem,
-                              mainController
-                            );
-
+  private final ElevatorCommand elevatorCommand = new ElevatorCommand(
+                                                                      elevatorSubsystem, mainController
+                                                                     );
   public RobotContainer() 
   {
     configureBindings();
@@ -57,8 +49,6 @@ public class RobotContainer
   public Command getAutonomousCommand() 
   {
     return Commands
-                  .print(
-                    "No autonomous command configured"
-                        );
+                  .print("No autonomous command configured");
   }
 }
